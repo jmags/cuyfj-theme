@@ -1,28 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="<?php echo get_bloginfo("stylesheet_url"); ?>">
-    <?php wp_head(); ?>
-</head>
-<body>
-<div class="container">
-<?php echo get_bloginfo("name"); ?>
-<?php
-    if(have_posts()) {
-        while(have_posts()) {
-            the_post(); ?>
-            <div class="entry">
-                <div class="entry-title">
-                    <h1><?php the_title(); ?></h1>
+<?php get_header(); ?>
+    <div class="posts">
+    <?php
+        if(have_posts()) {
+            while(have_posts()) {
+                the_post(); ?>
+                <div class="post">
+                    <div class="post-title">
+                        <h2><?php the_title(); ?></h2>
+                    </div>
+                    <div class="post-text">
+                        <?php the_content(); ?>
+                    </div>
                 </div>
-                <div class="entry-text">
-                    <?php the_content(); ?>
-                </div>
-            </div>
-            <?php
+                <?php
+            }
         }
-    }
-?>
-</div>
-</body>
-</html>
+    ?>
+    </div>
+<?php get_footer(); ?>
