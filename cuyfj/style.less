@@ -1,17 +1,93 @@
+@body-font-color: #e6e2e2;
+@body-background-color: #32313b;
+
+@body-link-color: #969292;
+
+@body-font: Geneva, Tahoma, sans-serif;
+
+@container-width: 80%;
+@container-min-width: 40em;
+@container-max-width: 60em;
+
+@posts-max-width: 50em;
+
+body {
+    color: @body-font-color;
+    font-family: @body-font;
+    background-color: @body-background-color;
+}
+
+a {
+    color: @body-link-color;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:visited {
+    color: @body-link-color;
+}
+
+h1,  h2 {
+    font-variant: small-caps;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// Container block for such content as is visible.
 .container {
-    width: 1000px;
+    width: @container-width;
+    min-width: @container-min-width;
+    max-width: @container-max-width;
     margin-right: auto;
     margin-left: auto;
 }
 
+.blog-name {
+    h1 {
+        text-align: center;
+    }
+}
+
+// Where the posts live.
+.posts {
+    max-width: 40em; // @posts-max-width;
+    float: left;
+}
+
+// An individual post and its context. 
 .post {
+    padding-top: .5em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1.75em;
+    
+    .date-block {
+        width: 15em;
+        margin-left: auto;
+        font-size: .75em;
+    }
 
+    .title {
+        h2 {
+            margin-top: .5em;
+            margin-bottom: .5em;
+        }
+    }
+
+    .text {
+        padding-top: .5em;
+        padding-right: 1em;
+    }
 }
 
-.post-title {
-
-}
-
-.post-text {
-
+.sidebar {
+    ul {
+        list-style-type: none;
+    }
+    a {
+        font-weight: normal;
+    }
 }

@@ -11,6 +11,8 @@
 <body>
 <div class="container">
     <div class="blog-name">
-    <?php echo get_bloginfo("stylesheet_url"); ?>
-        <h1><?php echo get_bloginfo("name"); ?></h1>
+        <a href="<?php echo get_site_url(); ?>">
+            <h1><?php echo get_bloginfo("name"); ?></h1>
+        </a>
+        
     </div>
