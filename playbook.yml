@@ -1,0 +1,56 @@
+---
+- hosts: all
+
+  tasks:
+  - name: Upgrade System
+    become: yes
+    apt:
+      update_cache: yes
+      upgrade: yes
+  
+
+  - name: Install Nginx
+    become: yes
+    apt:
+      name: nginx
+
+  - name: Install Mysql
+    become: yes
+    apt:
+      name: mysql-server
+
+  - name: Install PHP
+    become: yes
+    apt:
+      name: php5-fpm 
+  
+  - name: Install PHP-Mysql
+    bcome: yes
+      name: php5-mysql
+
+  - name: Clean Up Nginx.conf  
+    # Nginx's default plays poorly w/ VBox; causes overagressive caching.
+    lineinfile:
+      dest: /etc/nginx/nginx.conf
+      regexp: 'sendfile'
+      line: 'sendfile off;'  
+
+  - name: Restart Nginx
+    # TODO: This should only run if nginx.conf has been changed in prev step.
+    service:
+      name: nginx
+      state: restarted  
+
+  - name: Create WP Database
+    become: yes
+    mysql_db: 
+      name: wordpress
+      state: present
+
+  - name: Create WP DB User
+    become: yes
+    mysql_user:
+      name: wordpress
+      password: wordpress
+      priv: 'wordpress.*:ALL'
+      state: present

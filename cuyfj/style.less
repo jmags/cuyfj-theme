@@ -7,7 +7,7 @@
 
 @container-width: 80%;
 @container-min-width: 40em;
-@container-max-width: 60em;
+@container-max-width: 80em;
 
 @posts-max-width: 50em;
 
@@ -31,12 +31,17 @@ h1,  h2 {
     font-variant: small-caps;
 }
 
+h2 {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
 img {
     max-width: 100%;
     height: auto;
 }
 
-// Container block for such content as is visible.
+// Container div for such content as is visible.
 .container {
     width: @container-width;
     min-width: @container-min-width;
@@ -45,16 +50,27 @@ img {
     margin-left: auto;
 }
 
+// Site header.
 .blog-name {
     h1 {
         text-align: center;
+    }
+
+    a {
+        color: @body-font-color;
     }
 }
 
 // Where the posts live.
 .posts {
-    max-width: 40em; // @posts-max-width;
-    float: left;
+    max-width: @posts-max-width;
+    margin-left: auto;
+    margin-right: auto;
+
+    // When the sidebar is active, float left. 
+    .sharing {
+        float: left;
+    }
 }
 
 // An individual post and its context. 
@@ -71,10 +87,6 @@ img {
     }
 
     .title {
-        h2 {
-            margin-top: .5em;
-            margin-bottom: .5em;
-        }
     }
 
     .text {
@@ -84,10 +96,27 @@ img {
 }
 
 .sidebar {
+    display: none;
+
+    font-size: .9em;
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
     ul {
         list-style-type: none;
+        margin-top: .25em;
+        margin-bottom: .5em;
     }
+
     a {
         font-weight: normal;
+    }
+
+    // Share container with div.posts.
+    .sharing {
+        display: block; 
     }
 }
