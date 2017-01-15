@@ -8,6 +8,11 @@
       update_cache: yes
       upgrade: yes
   
+  - name: Python Mysql
+  # Ansible requires this to operate on DBs.
+    become: yes
+    apt:
+      name: python-mysqldb
 
   - name: Install Nginx
     become: yes
@@ -23,9 +28,20 @@
     become: yes
     apt:
       name: php5-fpm 
+
+  - name: Install Some PHP Image Tools
+    become: yes
+    apt:
+      name: php5-gd
+
+  - name: Allow PHP Access to SSH Functionality
+    become: yes
+    apt:
+      name: libssh2-php
   
   - name: Install PHP-Mysql
-    bcome: yes
+    become: yes
+    apt:
       name: php5-mysql
 
   - name: Clean Up Nginx.conf  
@@ -33,13 +49,24 @@
     lineinfile:
       dest: /etc/nginx/nginx.conf
       regexp: 'sendfile'
-      line: 'sendfile off;'  
+      line: 'sendfile off;'
+
+  - name: Address PHP
+    become: yes
+    template:
+      src: provisioning/site_default.conf
+      dest: /etc/nginx/sites-available/default
 
   - name: Restart Nginx
     # TODO: This should only run if nginx.conf has been changed in prev step.
     service:
       name: nginx
       state: restarted  
+
+  # - name: Restart PHP
+  #   service:
+  #     name: php5-fpm
+  #     state: restarted
 
   - name: Create WP Database
     become: yes
@@ -54,3 +81,10 @@
       password: wordpress
       priv: 'wordpress.*:ALL'
       state: present
+
+  - name: Download WP Tarball
+    get_url:
+      url: https://wordpress.org/latest.tar.gz 
+      dest: /tmp/wordpress.tar.gz
+
+  
