@@ -41,6 +41,15 @@ img {
     height: auto;
 }
 
+ul {
+    list-style-type: none;
+}
+
+// ACTIVATIN STEALTH MODE!
+.hide {
+    display: none;
+}
+
 // Container div for such content as is visible.
 .container {
     width: @container-width;
@@ -58,6 +67,14 @@ img {
 
     a {
         color: @body-font-color;
+    }
+}
+
+.head-nav {
+    ul {
+        li {
+            display: inline;
+        }
     }
 }
 
@@ -82,7 +99,7 @@ img {
     
     .date-block {
         width: 15em;
-        margin-left: auto;
+        // margin-left: auto;
         font-size: .75em;
     }
 
@@ -96,9 +113,9 @@ img {
 }
 
 .sidebar {
-    display: none;
-
     font-size: .9em;
+    overflow: auto;
+    // TODO: Make this "rest of screen" high.
 
     h2 {
         margin-top: 0;
@@ -106,17 +123,12 @@ img {
     }
 
     ul {
-        list-style-type: none;
+        // list-style-type: none;
         margin-top: .25em;
         margin-bottom: .5em;
     }
 
     a {
         font-weight: normal;
-    }
-
-    // Share container with div.posts.
-    .sharing {
-        display: block; 
     }
 }

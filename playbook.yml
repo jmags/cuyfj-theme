@@ -46,6 +46,7 @@
 
   - name: Clean Up Nginx.conf  
     # Nginx's default plays poorly w/ VBox; causes overagressive caching.
+    become: yes
     lineinfile:
       dest: /etc/nginx/nginx.conf
       regexp: 'sendfile'
@@ -92,3 +93,8 @@
     unarchive:
       src: /tmp/wordpress.tar.gz
       dest: /usr/share/nginx/html/
+
+  - name: Set Up WP Importer
+    get_url: 
+      url: https://downloads.wordpress.org/plugin/wordpress-importer.0.6.3.zip
+      dest: /tmp/wordpress-importer.zip
