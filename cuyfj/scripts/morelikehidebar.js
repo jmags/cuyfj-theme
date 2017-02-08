@@ -1,4 +1,5 @@
 $(function() {
+    // Avail ourselves of a less hideous scrollbar.
     $('.siderbar').mCustomScrollbar({
         scrollInertia: 0 // Don't "improve" scroll behavior.
     });
