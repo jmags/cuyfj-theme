@@ -45,6 +45,21 @@ ul {
     list-style-type: none;
 }
 
+button {
+    background-color: transparent;
+    font-family: @body-font;
+    color: @body-font-color;
+    border-style: solid;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    :focus {
+        outline: 0;
+    }
+}
+
 // ACTIVATIN STEALTH MODE!
 .hide {
     display: none;
@@ -71,10 +86,11 @@ ul {
 }
 
 .head-nav {
-    ul {
-        li {
-            display: inline;
-        }
+    width: 100%;
+
+    button {
+        float: right;
+        margin-right: 9em;
     }
 }
 
@@ -113,9 +129,12 @@ ul {
 }
 
 .sidebar {
+    padding-top: .5em;
     font-size: .9em;
     overflow: auto;
     // TODO: Make this "rest of screen" high.
+    height: 40em;
+    width: 100%;
 
     h2 {
         margin-top: 0;
